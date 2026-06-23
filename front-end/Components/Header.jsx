@@ -1,15 +1,23 @@
 import { assets } from '@/Assets/assets'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import React from 'react'
 
 const Header = () => {
+
+ const router = useRouter();
+
+ const handleClick = ()=>{
+  router.push('/Login');
+ };
+
   return (
     <div className = 'py-5 px-5 md:12 lg:px-28'>
        <div className='flex items-center justify-between bg-amber-100 w-full'>
 
-         <Image src={assets.logo} width={180}  alt="Logo" className='border-1 border-black' />
-         <button type='submit' className = 'flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6 border border-solid border-black shadow-[-7px_7px_0px_#000000] hover:bg-gray-200' >
-           Get Started <Image src={assets.arrow} alt="Arrow" />
+         <Image src={assets.logo} priority width={180}  alt="Logo" className='border-1 border-black' />
+         <button onClick={handleClick} type='submit' className = 'flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6 border border-solid border-black shadow-[-7px_7px_0px_#000000] hover:bg-gray-200' >
+           Get Started <Image src={assets.arrow} priority alt="Arrow" />
          </button>
 
        </div>
