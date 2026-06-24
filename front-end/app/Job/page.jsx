@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, {useState} from 'react'
 import axios from 'axios'
+import { toast } from "react-toastify";
 
 
 
@@ -34,11 +35,13 @@ const page = () => {
     };
 
       const response = await axios.post(BACKEND_URL + '/api/job/add',jobData)
+      toast.success("Job Added Successfully")
 
-      console.log(response.data);
+      
 
     }catch(error){
       console.error('Error submitting job request:', error);
+      toast.error("Error")
     }
 
 
@@ -115,7 +118,6 @@ const page = () => {
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500">
-                    <option value="">Select Category</option>
                     <option value="Plumbing">Plumbing</option>
                     <option value="Electrical">Electrical</option>
                     <option value="Painting">Painting</option>

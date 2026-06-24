@@ -48,7 +48,8 @@ const listJobs = async (req, res) => {
 // function for remove job request
 const removeJob = async (req, res) => {
     try{
-        await jobModel.findByIdAndDelete(req.body.id)
+        const {jobId} = req.body;
+        await jobModel.findByIdAndDelete(jobId)
         res.json({success:true, message:"Job removed successfully"})
 
     }catch(error){

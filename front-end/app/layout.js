@@ -1,6 +1,11 @@
 import {Outfit} from "next/font/google";
 import "./globals.css";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
+
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],weight:["400","500","600","700","800"]
@@ -17,8 +22,15 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${outfit.variable} h-full antialiased`}
-    >
-      <body className={outfit.className}>{children}</body>
+      >
+      <body className={outfit.className}>{children}
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          theme="light"
+        />
+      </body>
+       
     </html>
   );
 }

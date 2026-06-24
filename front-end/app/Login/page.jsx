@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const page = () => {
   const router = useRouter();
@@ -20,27 +21,24 @@ const page = () => {
 
     try {
       if (currentState === "Sign Up") {
-        const response = await axios.post(
-          `${BACKEND_URL}/api/user/register`,
-          { name, email, password }
-        );
-
+        const response = await axios.post(`${BACKEND_URL}/api/user/register`, { name, email, password });
+        toast.success("Registered Successfull ,Login Again")
         console.log("Register:", response.data);
+
       } else {
-        const response = await axios.post(
-          `${BACKEND_URL}/api/user/login`,
-          { email, password }
-        );
+        const response = await axios.post(`${BACKEND_URL}/api/user/login`,{ email, password } );
 
         console.log("Login:", response.data);
 
-        // ✅ NAVIGATE ON SUCCESS
+        
         if (response.data.success) {
+          toast.success("Login Successful")
           router.push("/Job");
         }
       }
     } catch (error) {
       console.log(error);
+      toast.error("Error")
     }
   };
 
